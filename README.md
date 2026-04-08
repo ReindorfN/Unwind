@@ -1,9 +1,9 @@
 # Unwind is a student-centred mental health app that offers:
 
-Journaling and mood tracking
-AI wellness companions that offer emotional check-ins and self-care suggestions
-A community forum, where students can anonymously share experiences and support one another
-Curated resources like guided meditations, affirmations, and breathing exercises
+* Journaling and mood tracking
+* AI wellness companions that offer emotional check-ins and self-care suggestions
+* A community forum, where students can anonymously share experiences and support one another
+* Curated resources like guided meditations, affirmations, and breathing exercises
 
 
 
