@@ -7,9 +7,9 @@ Curated resources like guided meditations, affirmations, and breathing exercises
 
 
 
-Built With
+## Built With
 bolt.new, css, date-fns, eslint, html, javascript, netlify, node.js, npm, openai, react, sql(postgresql), supabase,
 tailwind-css, tavus, ypescript, vite, zod, zustand
 
-Try it out
- mind-unwind.netlify.app
+## Try it out
+[unwind website] (mind-unwind.netlify.app)
