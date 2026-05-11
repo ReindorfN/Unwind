@@ -178,8 +178,65 @@ const ForumPage = () => {
         <div className="lg:col-span-1">
           <Card className="sticky top-6">
             <h3 className="text-lg font-semibold mb-4">Categories</h3>
-            <div className="space-y-2">
+
+            {/* Mobile / tablet: 2-row column grid + horizontal scroll */}
+            <div
+              className="lg:hidden -mx-6 px-6 overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth [-webkit-overflow-scrolling:touch] pb-1"
+              role="region"
+              aria-label="Forum categories"
+            >
+              <div className="grid w-max grid-flow-col grid-rows-[auto_auto] gap-2 auto-cols-[minmax(11.5rem,13.5rem)]">
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('all')}
+                  className={`flex h-full min-h-[4.25rem] w-full flex-col justify-center text-left rounded-md p-3 transition-colors ${
+                    selectedCategory === 'all'
+                      ? 'bg-primary-50 text-primary-700'
+                      : 'hover:bg-neutral-50'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium text-sm leading-snug">All Categories</span>
+                    <span className="shrink-0 text-sm text-neutral-500">{posts.length}</span>
+                  </div>
+                </button>
+                {categories.map((category) => (
+                  <button
+                    type="button"
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`flex h-full min-h-[4.25rem] w-full flex-col justify-center text-left rounded-md p-3 transition-colors ${
+                      selectedCategory === category.id
+                        ? 'bg-primary-50 text-primary-700'
+                        : 'hover:bg-neutral-50'
+                    }`}
+                  >
+                    <div className="mb-1 flex min-w-0 items-center gap-2">
+                      <div
+                        className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs text-white"
+                        style={{ backgroundColor: category.color }}
+                      >
+                        {iconMap[category.icon]}
+                      </div>
+                      <span className="min-w-0 truncate font-medium text-sm leading-snug">
+                        {category.name}
+                      </span>
+                    </div>
+                    <div className="flex min-w-0 items-start justify-between gap-2 pl-8">
+                      <span className="line-clamp-2 text-left text-xs text-neutral-600">
+                        {category.description}
+                      </span>
+                      <span className="shrink-0 text-xs text-neutral-500">{category.post_count}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop sidebar: vertical list */}
+            <div className="hidden lg:block space-y-2" role="region" aria-label="Forum categories">
               <button
+                type="button"
                 onClick={() => setSelectedCategory('all')}
                 className={`w-full text-left p-3 rounded-md transition-colors ${
                   selectedCategory === 'all'
@@ -189,13 +246,12 @@ const ForumPage = () => {
               >
                 <div className="flex items-center justify-between">
                   <span className="font-medium">All Categories</span>
-                  <span className="text-sm text-neutral-500">
-                    {posts.length}
-                  </span>
+                  <span className="text-sm text-neutral-500">{posts.length}</span>
                 </div>
               </button>
               {categories.map((category) => (
                 <button
+                  type="button"
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
                   className={`w-full text-left p-3 rounded-md transition-colors ${
@@ -205,7 +261,7 @@ const ForumPage = () => {
                   }`}
                 >
                   <div className="flex items-center mb-1">
-                    <div 
+                    <div
                       className="w-6 h-6 rounded-full flex items-center justify-center mr-2 text-white text-xs"
                       style={{ backgroundColor: category.color }}
                     >
@@ -214,12 +270,8 @@ const ForumPage = () => {
                     <span className="font-medium text-sm">{category.name}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-neutral-600 ml-8">
-                      {category.description}
-                    </span>
-                    <span className="text-xs text-neutral-500">
-                      {category.post_count}
-                    </span>
+                    <span className="text-xs text-neutral-600 ml-8">{category.description}</span>
+                    <span className="text-xs text-neutral-500">{category.post_count}</span>
                   </div>
                 </button>
               ))}

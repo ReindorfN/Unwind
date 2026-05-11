@@ -399,12 +399,17 @@ const HomePage = () => {
           <Target size={20} className="mr-2 text-primary-500" />
           What are you working on today?
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
+        <div
+          className="-mx-6 px-6 sm:mx-0 sm:px-0 flex sm:grid flex-nowrap gap-3 overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth max-sm:snap-x max-sm:snap-mandatory [-webkit-overflow-scrolling:touch] sm:overflow-x-visible sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 pb-1 sm:pb-0"
+          role="group"
+          aria-label="Focus areas"
+        >
           {focusAreas.map((area) => (
             <button
+              type="button"
               key={area.id}
               onClick={() => handleFocusAreaChange(area.id)}
-              className={`p-3 rounded-lg border-2 transition-all text-left ${
+              className={`min-w-[10.75rem] max-w-[12rem] sm:min-w-0 sm:max-w-none flex-shrink-0 max-sm:snap-start p-3 rounded-lg border-2 transition-all text-left ${
                 selectedFocusArea === area.id
                   ? 'border-primary-500 bg-primary-50'
                   : 'border-neutral-200 hover:border-primary-300'
@@ -640,43 +645,55 @@ const HomePage = () => {
               <Award size={18} className="mr-2" />
               Your Achievements
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <AchievementBadge
-                icon={<Calendar size={18} />}
-                title="Consistent Tracker"
-                description="Track your mood for 7 consecutive days"
-                progress={Math.min(streak, 7)}
-                maxProgress={7}
-                isUnlocked={streak >= 7}
-                color="primary"
-              />
-              <AchievementBadge
-                icon={<BookOpen size={18} />}
-                title="Journal Master"
-                description="Complete 5 journal entries"
-                progress={hasJournalEntry() ? 1 : 0}
-                maxProgress={5}
-                isUnlocked={false}
-                color="secondary"
-              />
-              <AchievementBadge
-                icon={<Brain size={18} />}
-                title="Meditation Guru"
-                description="Complete 10 meditation sessions"
-                progress={localStorage.getItem(`meditation_completed_today_${user?.id || 'anonymous'}`) === format(new Date(), 'yyyy-MM-dd') ? 1 : 0}
-                maxProgress={10}
-                isUnlocked={false}
-                color="accent"
-              />
-              <AchievementBadge
-                icon={<Heart size={18} />}
-                title="Gratitude Champion"
-                description="Practice gratitude 5 times"
-                progress={localStorage.getItem(`gratitude_completed_today_${user?.id || 'anonymous'}`) === format(new Date(), 'yyyy-MM-dd') ? 1 : 0}
-                maxProgress={5}
-                isUnlocked={false}
-                color="success"
-              />
+            <div
+              className="-mx-6 px-6 sm:mx-0 sm:px-0 flex sm:grid flex-nowrap gap-3 overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth max-sm:snap-x max-sm:snap-mandatory [-webkit-overflow-scrolling:touch] sm:overflow-x-visible sm:grid-cols-2 pb-1 sm:pb-0"
+              role="group"
+              aria-label="Achievements"
+            >
+              <div className="min-w-[18rem] max-w-[22rem] sm:min-w-0 sm:max-w-none flex-shrink-0 max-sm:snap-start">
+                <AchievementBadge
+                  icon={<Calendar size={18} />}
+                  title="Consistent Tracker"
+                  description="Track your mood for 7 consecutive days"
+                  progress={Math.min(streak, 7)}
+                  maxProgress={7}
+                  isUnlocked={streak >= 7}
+                  color="primary"
+                />
+              </div>
+              <div className="min-w-[18rem] max-w-[22rem] sm:min-w-0 sm:max-w-none flex-shrink-0 max-sm:snap-start">
+                <AchievementBadge
+                  icon={<BookOpen size={18} />}
+                  title="Journal Master"
+                  description="Complete 5 journal entries"
+                  progress={hasJournalEntry() ? 1 : 0}
+                  maxProgress={5}
+                  isUnlocked={false}
+                  color="secondary"
+                />
+              </div>
+              <div className="min-w-[18rem] max-w-[22rem] sm:min-w-0 sm:max-w-none flex-shrink-0 max-sm:snap-start">
+                <AchievementBadge
+                  icon={<Brain size={18} />}
+                  title="Meditation Guru"
+                  description="Complete 10 meditation sessions"
+                  progress={localStorage.getItem(`meditation_completed_today_${user?.id || 'anonymous'}`) === format(new Date(), 'yyyy-MM-dd') ? 1 : 0}
+                  maxProgress={10}
+                  isUnlocked={false}
+                  color="accent"
+                />
+              </div>
+              <div className="min-w-[18rem] max-w-[22rem] sm:min-w-0 sm:max-w-none flex-shrink-0 max-sm:snap-start">
+                <AchievementBadge
+                  icon={<Heart size={18} />}
+                  title="Gratitude Champion"
+                  description="Practice gratitude 5 times"
+                  progress={localStorage.getItem(`gratitude_completed_today_${user?.id || 'anonymous'}`) === format(new Date(), 'yyyy-MM-dd') ? 1 : 0}
+                  maxProgress={5}
+                  isUnlocked={false}
+                  color="success"
+                />
+              </div>
             </div>
           </Card>
         </div>

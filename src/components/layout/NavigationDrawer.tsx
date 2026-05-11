@@ -190,7 +190,7 @@ const NavigationDrawer = () => {
                 </Link>
               </div>
 
-              <div className="flex-1 overflow-y-auto py-4">
+              <div className="flex-1 min-h-0 overflow-y-auto py-4">
                 <nav className="space-y-1 px-2">
                   {navItems.map((item) => {
                     const Icon = item.icon;
@@ -213,7 +213,21 @@ const NavigationDrawer = () => {
                 </nav>
               </div>
 
+              <div className="flex-shrink-0 p-4 border-t bg-white">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false);
+                    void signOut();
+                  }}
+                  className="w-full flex items-center px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 rounded-md transition-colors"
+                >
+                  <LogOut size={18} className="mr-2" />
+                  Sign Out
+                </button>
+              </div>
             </motion.div>
+
           </>
         )}
       </AnimatePresence>

@@ -827,7 +827,41 @@ const RantCompanionPage = () => {
           <div>
             <Card className="sticky top-6">
               <h3 className="text-lg font-semibold mb-4">Your Safe Space</h3>
-              <div className="space-y-4 text-sm text-neutral-600">
+
+              {/* Shorter copy on small screens */}
+              <div className="md:hidden space-y-3 text-xs text-neutral-600">
+                <div>
+                  <h4 className="font-medium text-neutral-900 mb-1.5">🎥 Video</h4>
+                  <ul className="space-y-0.5">
+                    <li>• Live AI + voice; responds to how you feel</li>
+                    <li>• Empathetic video replies</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium text-neutral-900 mb-1.5">💬 Text</h4>
+                  <ul className="space-y-0.5">
+                    <li>• Thoughtful written replies</li>
+                    <li>• Starters, bookmarks & suggestions</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium text-neutral-900 mb-1.5">🔒 Privacy</h4>
+                  <ul className="space-y-0.5">
+                    <li>• Confidential; you control your data</li>
+                    <li>• Encrypted; no recordings kept</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium text-neutral-900 mb-1.5">💡 Tips</h4>
+                  <ul className="space-y-0.5">
+                    <li>• Be honest; pause when you need to</li>
+                    <li>• Pick video or text—whatever feels safer</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Full copy on md+ */}
+              <div className="hidden md:block space-y-4 text-sm text-neutral-600">
                 <div>
                   <h4 className="font-medium text-neutral-900 mb-2">🎥 Video Call Features:</h4>
                   <ul className="space-y-1">
@@ -847,7 +881,7 @@ const RantCompanionPage = () => {
                     <li>• Smart recommendations</li>
                   </ul>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-neutral-900 mb-2">🔒 Privacy:</h4>
                   <ul className="space-y-1">
