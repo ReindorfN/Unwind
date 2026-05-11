@@ -37,7 +37,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 // Component to initialize notifications after auth is loaded
 const NotificationInitializer = () => {
   const { user } = useAuthStore();
-  const notifications = useNotifications();
+  useNotifications();
   const initialized = useRef(false);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ function App() {
                 <Route path="/" element={<IndexPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/reset-password" element={<ResetPasswordPage />} />
+                <Route path="/reset-password" element={<ResetPasswordPage isOpen={true} onClose={() => {}} />} />
                 <Route path="/emergency" element={<EmergencyHelp />} />
                 <Route path="/unauthorized" element={<UnauthorizedPage />} />
               </Route>

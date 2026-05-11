@@ -19,10 +19,19 @@ const defaultSettings: ReminderSettings = {
   custom_days: []
 };
 
+function isNotificationSupported(): boolean {
+  return typeof window !== 'undefined' && 'Notification' in window;
+}
+
+function readBrowserNotificationPermission(): NotificationPermission {
+  if (!isNotificationSupported()) return 'default';
+  return window.Notification.permission;
+}
+
 export const useNotifications = () => {
   const { user } = useAuthStore();
   const [state, setState] = useState<NotificationState>({
-    permission: Notification.permission as NotificationPermission,
+    permission: readBrowserNotificationPermission(),
     settings: defaultSettings,
     loading: true,
     error: null
@@ -118,9 +127,9 @@ export const useNotifications = () => {
   const requestPermission = async () => {
     try {
       const granted = await notificationService.requestPermission();
-      setState(prev => ({ 
-        ...prev, 
-        permission: granted ? 'granted' : 'denied' 
+      setState(prev => ({
+        ...prev,
+        permission: granted ? 'granted' : readBrowserNotificationPermission(),
       }));
       return granted;
     } catch (error) {
@@ -159,6 +168,7 @@ export const useNotifications = () => {
 
   return {
     ...state,
+    notificationsSupported: isNotificationSupported(),
     updateSettings,
     requestPermission,
     testNotification,
